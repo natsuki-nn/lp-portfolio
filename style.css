@@ -22,10 +22,10 @@ h2 { font-family: var(--serif); font-weight: 700; line-height: 1.25; }
 
 /* スクロールせずに全作品が見えるスマホ表示の一覧 */
 .gallery {
-  --pw: min(calc((100% - 6 * 14px) / 7), calc((100vh - 200px) / 2 * .462));
-  --pw: min(calc((100% - 6 * 14px) / 7), calc((100svh - 200px) / 2 * .462));
+  --pw: min(calc((100% - 5 * 16px) / 6), calc((100vh - 200px) / 2 * .462));
+  --pw: min(calc((100% - 5 * 16px) / 6), calc((100svh - 200px) / 2 * .462));
   list-style: none; margin: 0; padding: 14px 0 12px;
-  display: grid; grid-template-columns: repeat(7, var(--pw)); justify-content: center; gap: 10px 14px;
+  display: grid; grid-template-columns: repeat(6, var(--pw)); justify-content: center; gap: 10px 16px;
 }
 .gallery li { min-width: 0; }
 .phone { display: block; aspect-ratio: 390 / 844; overflow: hidden; border: 1px solid #b8b8b1; border-radius: 8px; background: #f5f5f2; transition: transform .2s ease, box-shadow .2s ease; }
@@ -34,6 +34,10 @@ h2 { font-family: var(--serif); font-weight: 700; line-height: 1.25; }
 .gallery p { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-top: 4px; font-size: 12px; line-height: 1.4; }
 .gallery b { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .gallery .more { color: var(--muted); font-size: 11px; white-space: nowrap; }
+/* 8P・12P の2つの版がある作品は、カードを1枚にして版を選べるようにする */
+.gallery .ver { display: inline-flex; gap: 4px; flex: none; }
+.gallery .ver a { display: inline-block; min-width: 2.6em; padding: 2px 6px; border: 1px solid var(--line); border-radius: 999px; text-align: center; font-size: 11px; line-height: 1.4; text-decoration: none; color: var(--ink); background: #fff; }
+.gallery .ver a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 
 .details { border-top: 1px solid var(--ink); }
 .details > summary { cursor: pointer; padding-block: 12px; font-size: 14px; font-weight: 700; list-style: none; }
@@ -72,9 +76,9 @@ h2 { overflow-wrap: anywhere; font-size: clamp(26px, 3.6vw, 45px); letter-spacin
   .visual, .work-copy { grid-column: auto; grid-row: auto; }
   .work-copy { order: -1; }
   .gallery {
-    --pw: min(calc((100% - 4 * 7px) / 5), calc((100vh - 240px) / 3 * .462));
-    --pw: min(calc((100% - 4 * 7px) / 5), calc((100svh - 240px) / 3 * .462));
-    grid-template-columns: repeat(5, var(--pw)); gap: 8px 7px; padding-top: 10px;
+    --pw: min(calc((100% - 3 * 8px) / 4), calc((100vh - 240px) / 3 * .462));
+    --pw: min(calc((100% - 3 * 8px) / 4), calc((100svh - 240px) / 3 * .462));
+    grid-template-columns: repeat(4, var(--pw)); gap: 8px; padding-top: 10px;
   }
   .phone { border-radius: 6px; }
   .gallery p { display: block; font-size: 10px; line-height: 1.35; }
