@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ミハリバン｜違法駐車の注意・証拠化代行サービス</title>
+<meta name="description" content="看板設置・LINE通報・駆けつけ証拠化まで。管理会社・駐車場オーナーの無断駐車対応をまるごと代行。月額1万円から。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0e1d38; --navy-2:#16294d; --ink:#1b2333; --muted:#5d6779;
+  --yellow:#ffc629; --yellow-soft:#fff4d1; --red:#e2463a;
+  --line:#06c755; --line-dark:#05a648;
+  --bg:#f5f6f8; --card:#ffffff; --border:#e3e6eb;
+  --radius:16px; --shadow:0 12px 32px rgba(14,29,56,.10);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.num{font-family:"Oswald",sans-serif;letter-spacing:.02em}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;border-radius:999px;padding:16px 28px;font-size:16px;transition:transform .15s,box-shadow .15s,background .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-yellow{background:var(--yellow);color:var(--navy);box-shadow:0 6px 0 #c99a14}
+.btn-yellow:hover{box-shadow:0 8px 0 #c99a14}
+.btn-line{background:var(--line);color:#fff;box-shadow:0 6px 0 #04913f}
+.btn-line:hover{box-shadow:0 8px 0 #04913f}
+.btn-ghost{border:2px solid rgba(255,255,255,.5);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--navy)}
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(14,29,56,.96);backdrop-filter:blur(8px);color:#fff}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:.04em}
+.logo-mark{width:34px;height:34px;border-radius:8px;background:var(--yellow);display:grid;place-items:center}
+.logo small{display:block;font-size:10px;font-weight:500;opacity:.7;letter-spacing:.08em;line-height:1}
+.hdr nav{display:flex;gap:28px;font-size:14px;font-weight:500}
+.hdr nav a{opacity:.85}.hdr nav a:hover{opacity:1;color:var(--yellow)}
+.hdr-cta{display:flex;gap:10px}
+.hdr-cta .btn{padding:10px 18px;font-size:14px;box-shadow:none}
+@media (max-width:900px){.hdr nav{display:none}}
+@media (max-width:560px){.hdr-cta .tel-btn{display:none}.hdr-cta .btn{padding:9px 14px;font-size:13px}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:radial-gradient(1200px 600px at 85% 10%,#22407a 0%,transparent 60%),var(--navy);color:#fff;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 22px,var(--navy) 22px 44px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:72px 0 96px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,198,41,.14);color:var(--yellow);border:1px solid rgba(255,198,41,.4);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(30px,4.6vw,54px);line-height:1.3;font-weight:900;margin:20px 0 18px;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--yellow);position:relative;white-space:nowrap}
+.hero .lead{font-size:clamp(15px,1.6vw,18px);opacity:.88;max-width:34em}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 32px}
+.hero-badges li{list-style:none;background:#fff;color:var(--navy);border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
+.hero-badges b{font-family:"Oswald",sans-serif;font-size:22px;color:var(--red);line-height:1}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+
+.hero-visual{position:relative;min-height:440px}
+.sign{position:absolute;left:4%;top:10px;width:270px;background:#fff;border-radius:14px;padding:12px;box-shadow:0 24px 50px rgba(0,0,0,.35);transform:rotate(-4deg)}
+.sign-inner{border:6px solid var(--red);border-radius:8px;padding:18px 14px;text-align:center;color:var(--navy)}
+.sign-ban{width:84px;height:84px;margin:0 auto 10px;border-radius:50%;border:9px solid var(--red);position:relative;display:grid;place-items:center;font-family:"Oswald";font-size:40px;font-weight:700;color:var(--navy)}
+.sign-ban::after{content:"";position:absolute;width:9px;height:100%;background:var(--red);transform:rotate(45deg)}
+.sign h3{font-size:24px;font-weight:900;letter-spacing:.06em}
+.sign p{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
+.sign-qr{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);font-size:11px;font-weight:700;text-align:left}
+.sign-qr i{width:38px;height:38px;flex:none;background:
+  conic-gradient(var(--navy) 25%,#fff 0 50%,var(--navy) 0 75%,#fff 0) 0 0/10px 10px;border:3px solid var(--navy);border-radius:4px}
+.sign-pole{position:absolute;left:50%;bottom:-160px;width:14px;height:160px;background:linear-gradient(90deg,#8b94a3,#c7ccd4,#8b94a3);transform:translateX(-50%);z-index:-1}
+
+.notif{position:absolute;right:0;width:290px;background:#fff;color:var(--ink);border-radius:16px;padding:14px 16px;box-shadow:0 18px 40px rgba(0,0,0,.3);display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.55}
+.notif .ic{width:38px;height:38px;border-radius:10px;flex:none;display:grid;place-items:center}
+.notif b{display:block;font-size:13px}
+.notif span{color:var(--muted);font-size:12px}
+.notif time{margin-left:auto;font-size:11px;color:var(--muted);flex:none}
+.n1{top:215px;animation:float 5s ease-in-out infinite}
+.n2{top:305px;right:30px;animation:float 5s ease-in-out -1.6s infinite}
+.n3{top:395px;right:-6px;animation:float 5s ease-in-out -3.2s infinite}
+.hero-visual{min-height:480px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;padding:48px 0 80px}
+  .hero-visual{min-height:420px;max-width:440px;width:100%;margin:0 auto}
+}
+@media (max-width:480px){
+  .hero-visual{min-height:440px}
+  .sign{width:200px;left:0;padding:9px}
+  .sign-inner{padding:14px 10px}
+  .sign-ban{width:66px;height:66px;font-size:30px;border-width:7px}
+  .sign h3{font-size:18px}
+  .notif{width:min(268px,86%);padding:11px 13px;gap:10px}
+  .notif time{display:none}
+  .notif .ic{width:32px;height:32px}
+  .n1{top:200px;right:0}.n2{top:280px;right:14px}.n3{top:360px;right:0}
+}
+
+/* ---------- sections ---------- */
+section{padding:96px 0}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 52px}
+.sec-label{display:inline-block;font-family:"Oswald";font-weight:700;letter-spacing:.18em;font-size:13px;color:var(--red);margin-bottom:10px}
+.sec-head h2{font-size:clamp(24px,3.4vw,38px);line-height:1.4;font-weight:900;color:var(--navy)}
+.sec-head h2 mark{background:linear-gradient(transparent 62%,var(--yellow) 62%);color:inherit;padding:0 2px}
+.sec-head p{color:var(--muted);margin-top:14px}
+@media (max-width:640px){section{padding:68px 0}.sec-head{margin-bottom:36px}}
+
+/* pain */
+.pain{background:#fff}
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pain-card{background:var(--bg);border-radius:var(--radius);padding:28px 22px;text-align:center;position:relative}
+.pain-card .ic{width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--shadow)}
+.pain-card .ic svg{width:30px;height:30px}
+.pain-card h3{font-size:16px;line-height:1.55;color:var(--navy);font-weight:700}
+.pain-card p{font-size:13px;color:var(--muted);margin-top:8px}
+.pain-arrow{text-align:center;margin-top:44px}
+.pain-arrow svg{width:46px;margin:0 auto 10px;color:var(--yellow)}
+.pain-arrow p{font-size:clamp(18px,2.4vw,26px);font-weight:900;color:var(--navy)}
+.pain-arrow p span{color:var(--red)}
+@media (max-width:900px){.pain-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.pain-grid{grid-template-columns:1fr}}
+
+/* steps */
+.steps-list{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s;position:relative}
+.step{background:#fff;border-radius:20px;padding:34px 26px 28px;box-shadow:var(--shadow);position:relative}
+.step-no{position:absolute;top:-18px;left:26px;background:var(--navy);color:var(--yellow);font-family:"Oswald";font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;letter-spacing:.1em}
+.step-illust{height:150px;border-radius:14px;background:var(--yellow-soft);display:grid;place-items:center;margin-bottom:22px;overflow:hidden}
+.step-illust svg{height:120px;width:auto}
+.step h3{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted)}
+.step ul{margin-top:14px;display:grid;gap:6px}
+.step li{list-style:none;font-size:13px;font-weight:500;display:flex;gap:8px;align-items:flex-start}
+.step li::before{content:"";width:16px;height:16px;flex:none;margin-top:4px;border-radius:50%;background:var(--line) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/10px no-repeat}
+.step:not(:last-child)::after{content:"";position:absolute;right:-24px;top:50%;width:20px;height:20px;border-top:4px solid var(--yellow);border-right:4px solid var(--yellow);transform:translateY(-50%) rotate(45deg);z-index:2}
+.steps-report{margin-top:34px;background:var(--navy);color:#fff;border-radius:20px;padding:22px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.steps-report .tag{background:var(--yellow);color:var(--navy);font-weight:900;padding:6px 14px;border-radius:8px;font-size:14px}
+.steps-report p{flex:1;min-width:240px;font-size:15px}
+@media (max-width:900px){
+  .steps-list{grid-template-columns:1fr;gap:40px;max-width:520px;margin:0 auto}
+  .step:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-30px;transform:translateX(-50%) rotate(135deg)}
+}
+
+/* plans */
+.plans{background:#fff}
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{border:2px solid var(--border);border-radius:22px;padding:34px 26px;display:flex;flex-direction:column;background:#fff;position:relative}
+.plan.pop{border-color:var(--navy);box-shadow:0 20px 44px rgba(14,29,56,.18);transform:translateY(-10px)}
+.plan .ribbon{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-weight:700;font-size:13px;padding:5px 16px;border-radius:999px;white-space:nowrap}
+.plan-name{font-size:14px;font-weight:700;color:var(--muted)}
+.plan h3{font-size:22px;font-weight:900;color:var(--navy);margin:2px 0 14px}
+.price{display:flex;align-items:baseline;gap:4px;color:var(--navy);padding-bottom:18px;border-bottom:1px solid var(--border)}
+.price small{font-size:14px;font-weight:700}
+.price strong{font-family:"Oswald";font-size:48px;line-height:1}
+.price .unit{font-size:15px;font-weight:700}
+.plan .for{font-size:13px;color:var(--muted);margin:16px 0}
+.plan ul{display:grid;gap:10px;margin-bottom:26px;flex:1}
+.plan li{list-style:none;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.plan li svg{width:18px;height:18px;flex:none;margin-top:4px;color:var(--line)}
+.plan li.off{color:#a7aebb}.plan li.off svg{color:#c6cbd3}
+.plan .btn{width:100%}
+.plan-note{text-align:center;font-size:12px;color:var(--muted);margin-top:28px}
+@media (max-width:900px){.plan-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}.plan.pop{transform:none;order:-1}}
+
+/* legal */
+.legal{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.legal .sec-head h2{color:#fff}
+.legal .sec-head p{color:rgba(255,255,255,.7)}
+.legal .sec-label{color:var(--yellow)}
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.legal-card{background:var(--navy-2);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;display:flex;gap:20px}
+.legal-card .ic{width:56px;height:56px;flex:none;border-radius:14px;background:rgba(255,198,41,.12);display:grid;place-items:center;color:var(--yellow)}
+.legal-card .ic svg{width:28px;height:28px}
+.legal-card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.legal-card p{font-size:14px;color:rgba(255,255,255,.72)}
+.dont{margin-top:30px;background:#fff;color:var(--ink);border-radius:18px;padding:26px 28px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.dont h3{font-size:16px;font-weight:900;color:var(--red);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.dont ul{display:flex;flex-wrap:wrap;gap:10px}
+.dont li{list-style:none;background:#fdecea;color:#a3271d;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;text-decoration:line-through;text-decoration-thickness:2px}
+.legal-disc{font-size:12px;color:rgba(255,255,255,.55);margin-top:18px;text-align:center}
+@media (max-width:760px){.legal-grid{grid-template-columns:1fr}.dont{grid-template-columns:1fr}.legal-card{padding:22px}}
+
+/* report (LINE form) */
+.report .wrap{display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center}
+.report .sec-head{text-align:left;margin:0 0 28px}
+.flow{display:grid;gap:16px}
+.flow li{list-style:none;display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(14,29,56,.06)}
+.flow .n{width:34px;height:34px;flex:none;border-radius:50%;background:var(--line);color:#fff;font-family:"Oswald";font-weight:700;display:grid;place-items:center}
+.flow b{display:block;color:var(--navy)}
+.flow span{font-size:13px;color:var(--muted)}
+.report-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.phone{width:100%;max-width:380px;margin:0 auto;background:#0b0f17;border-radius:44px;padding:12px;box-shadow:0 30px 60px rgba(14,29,56,.3)}
+.screen{background:#8fa6c4;border-radius:34px;overflow:hidden;height:700px;display:flex;flex-direction:column;position:relative}
+.ph-top{background:#26354f;color:#fff;padding:16px 18px 12px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700}
+.ph-top .av{width:30px;height:30px;border-radius:50%;background:var(--yellow);display:grid;place-items:center}
+.ph-top small{display:block;font-size:10px;font-weight:400;opacity:.7}
+.chat{padding:14px;display:grid;gap:10px;align-content:start}
+.bubble{background:#fff;border-radius:4px 16px 16px 16px;padding:10px 12px;font-size:12.5px;line-height:1.6;max-width:88%}
+.bubble.me{justify-self:end;background:#8de055;border-radius:16px 4px 16px 16px}
+.form-sheet{position:absolute;left:0;right:0;bottom:0;top:118px;background:#fff;border-radius:20px 20px 0 0;display:flex;flex-direction:column;transform:translateY(0);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.sheet-bar{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sheet-bar b{font-size:14px;color:var(--navy)}
+.sheet-bar span{font-size:11px;color:var(--muted)}
+.sheet-body{padding:14px 18px 18px;overflow-y:auto;flex:1;display:grid;gap:14px;align-content:start}
+.fld label,.fld .lbl{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--navy)}
+.req{color:#fff;background:var(--red);font-size:10px;padding:1px 6px;border-radius:4px;font-weight:700}
+.fld input[type=text],.fld textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;font-size:13px;background:#fafbfc}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--line);background:#fff}
+.fld textarea{resize:none;height:62px}
+.upload{border:2px dashed #b9c1cd;border-radius:12px;padding:14px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer;display:block;transition:border-color .2s}
+.upload:hover{border-color:var(--line)}
+.upload svg{width:26px;height:26px;margin:0 auto 4px;color:var(--line)}
+.upload input{display:none}
+.thumbs{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.thumbs img{width:54px;height:54px;object-fit:cover;border-radius:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips label{margin:0;font-weight:500;font-size:12px;color:var(--ink);cursor:pointer}
+.chips input{display:none}
+.chips span{display:inline-block;border:1.5px solid var(--border);padding:6px 11px;border-radius:999px}
+.chips input:checked+span{border-color:var(--line);background:#e7f9ee;color:var(--line-dark);font-weight:700}
+.geo{display:flex;gap:6px}
+.geo input{flex:1}
+.geo button{flex:none;font-size:11px;font-weight:700;color:var(--line-dark);border:1.5px solid var(--line);border-radius:10px;padding:0 10px;background:#fff}
+.submit{background:var(--line);color:#fff;font-weight:700;border-radius:12px;padding:13px;font-size:14px;width:100%}
+.submit:disabled{background:#b6c0cc;cursor:not-allowed}
+.done{position:absolute;z-index:3;inset:118px 0 0 0;background:#fff;border-radius:20px 20px 0 0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;gap:12px}
+.done.show{display:flex;animation:pop .4s ease}
+.done .ok{width:70px;height:70px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff}
+.done .ok svg{width:36px}
+.done h4{font-size:17px;color:var(--navy)}
+.done p{font-size:12.5px;color:var(--muted)}
+.done .rid{font-family:"Oswald";font-size:20px;color:var(--navy);background:var(--bg);padding:6px 16px;border-radius:8px}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.demo-tag{display:inline-block;margin-top:12px;font-size:12px;color:var(--muted)}
+@media (max-width:960px){
+  .report .wrap{grid-template-columns:1fr;gap:44px}
+  .report .sec-head{text-align:center}
+  .report-actions{justify-content:center}
+}
+@media (max-width:420px){.screen{height:640px}.phone{border-radius:36px;padding:9px}.screen{border-radius:28px}}
+
+/* faq */
+.faq{background:#fff}
+.faq-list{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.faq details{background:var(--bg);border-radius:14px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;padding:20px 0;font-weight:700;color:var(--navy)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:"Oswald";color:var(--yellow);background:var(--navy);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none}
+.faq summary::after{content:"+";margin-left:auto;font-size:22px;font-weight:400;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px 44px;font-size:14px;color:var(--muted)}
+
+/* cta */
+.cta{background:var(--yellow);position:relative;overflow:hidden}
+.cta::before,.cta::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(-45deg,var(--navy) 0 22px,var(--yellow) 22px 44px)}
+.cta::before{top:0}.cta::after{bottom:0}
+.cta .wrap{text-align:center}
+.cta h2{font-size:clamp(24px,3.6vw,40px);font-weight:900;color:var(--navy);line-height:1.4}
+.cta p{margin:14px 0 30px;color:var(--navy);font-weight:500}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.cta .btn-navy{box-shadow:0 6px 0 #050c18}
+.cta-tel{margin-top:22px;font-size:13px;color:var(--navy)}
+.cta-tel b{font-family:"Oswald";font-size:30px;display:block;line-height:1.2;letter-spacing:.04em}
+
+/* footer */
+footer{background:#0a1528;color:rgba(255,255,255,.7);padding:40px 0 110px;font-size:12px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer .logo{color:#fff;font-size:17px}
+.demo-note{width:100%;border-top:1px solid rgba(255,255,255,.1);padding-top:18px;line-height:1.7}
+@media (min-width:761px){footer{padding-bottom:40px}}
+
+/* sticky sp bar */
+.sp-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -6px 20px rgba(0,0,0,.1)}
+.sp-bar .btn{flex:1;padding:13px 10px;font-size:14px;box-shadow:none}
+@media (max-width:760px){.sp-bar{display:flex}}
+
+/* reveal */
+.rv{transition:transform .6s ease}
+.rv:not(.in){transform:translateY(10px)}
+.rv.in{transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .n1,.n2,.n3{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== header ===== -->
+<header class="hdr">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="ミハリバン トップへ">
+      <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0e1d38" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/><path d="M9.5 15.5V8.5h3a2.2 2.2 0 010 4.4h-3"/></svg></span>
+      <span>ミハリバン<small>PARKING GUARD SERVICE</small></span>
+    </a>
+    <nav aria-label="ページ内メニュー">
+      <a href="#steps">仕組み</a><a href="#plans">料金</a><a href="#legal">法務・安心</a><a href="#report">LINE通報</a><a href="#faq">よくある質問</a>
+    </nav>
+    <div class="hdr-cta">
+      <a href="tel:0120000000" class="btn btn-ghost tel-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.6a1 1 0 01-.25 1z"/></svg>電話で相談</a>
+      <a href="#report" class="btn btn-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg>LINEで通報</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===== 1. FV ===== -->
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">管理会社・駐車場オーナーさま向け</span>
+      <h1>その無断駐車、<br><em>もう我慢しない。</em></h1>
+      <p class="lead">看板の設置から、スマホでのLINE通報、現地への駆けつけと証拠化まで。<br>トラブルになりやすい「注意する役」を、まるごと代行します。</p>
+      <ul class="hero-badges">
+        <li>月額<b class="num">1</b>万円から</li>
+        <li>通報は<b class="num">30</b>秒・スマホで</li>
+        <li>写真付き<b>報告書</b></li>
+      </ul>
+      <div class="hero-actions">
+        <a href="#steps" class="btn btn-yellow">サービス詳細を見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></a>
+        <a href="#report" class="btn btn-ghost">LINE通報を試してみる</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="sign">
+        <div class="sign-inner">
+          <div class="sign-ban">P</div>
+          <h3>無断駐車禁止</h3>
+          <p>この駐車場は巡回・記録を行っています。<br>無断駐車は記録のうえ、所有者へ対応を求めます。</p>
+          <div class="sign-qr"><i></i><span>管理者さま専用<br>LINE通報窓口</span></div>
+        </div>
+        <div class="sign-pole"></div>
+      </div>
+      <div class="notif n1">
+        <div class="ic" style="background:var(--line)"><svg width="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg></div>
+        <div><b>通報を受け付けました</b><span>第2駐車場・No.7区画／写真3枚</span></div><time>9:12</time>
+      </div>
+      <div class="notif n2">
+        <div class="ic" style="background:var(--yellow)"><svg width="20" viewBox="0 0 24 24" fill="none" stroke="#0e1d38" stroke-width="2.4"><circle cx="12" cy="11" r="3"/><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/></svg></div>
+        <div><b>スタッフが現地に到着</b><span>警告書の貼付・車両の撮影を開始</span></div><time>10:05</time>
+      </div>
+      <div class="notif n3">
+        <div class="ic" style="background:var(--navy)"><svg width="20" viewBox="0 0 24 24" fill="none" stroke="#ffc629" stroke-width="2.4"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></div>
+        <div><b>証拠レポートが届きました</b><span>日時・位置情報つき PDF</span></div><time>10:31</time>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== pain ===== -->
+<section class="pain">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">PROBLEM</span>
+      <h2>こんな「無断駐車の悩み」<br>抱えていませんか？</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e2463a" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M12 7v4M12 14h.01"/></svg></div>
+        <h3>契約者からのクレームに<br>毎回振り回される</h3>
+        <p>「また停められている」の連絡が、休日も夜も届く。</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e2463a" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/><path d="M17 3l4 4M21 3l-4 4"/></svg></div>
+        <h3>直接注意しに行くのは<br>トラブルが怖い</h3>
+        <p>相手の反応が読めず、担当者の負担と不安が大きい。</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e2463a" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/><path d="M9 12h6"/></svg></div>
+        <h3>警察に相談しても<br>「民事なので」と言われる</h3>
+        <p>私有地の駐車場では、すぐに動いてもらえないことも。</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e2463a" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l2-3h4l2 3"/><path d="M3 3l18 18"/></svg></div>
+        <h3>記録が残っておらず<br>次の手が打てない</h3>
+        <p>いつ・何回・どの車か。証拠がないと交渉も進まない。</p>
+      </div>
+    </div>
+    <div class="pain-arrow rv">
+      <svg viewBox="0 0 48 30" fill="currentColor"><path d="M0 0h48L24 30z"/></svg>
+      <p>その対応、<span>ミハリバン</span>がまるごと引き受けます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. steps ===== -->
+<section class="steps" id="steps">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">HOW IT WORKS</span>
+      <h2>導入から解決まで、<mark>たった3ステップ</mark></h2>
+      <p>オーナーさまがすることは「LINEで知らせる」だけ。あとはすべて私たちが動きます。</p>
+    </div>
+    <div class="steps-list">
+      <div class="step rv">
+        <span class="step-no">STEP 01</span>
+        <div class="step-illust">
+          <svg viewBox="0 0 120 120"><rect x="56" y="62" width="8" height="52" fill="#8b94a3"/><rect x="22" y="12" width="76" height="58" rx="6" fill="#fff" stroke="#e2463a" stroke-width="5"/><circle cx="44" cy="40" r="15" fill="none" stroke="#e2463a" stroke-width="5"/><path d="M34 30l20 20" stroke="#e2463a" stroke-width="5"/><rect x="66" y="27" width="22" height="4" rx="2" fill="#0e1d38"/><rect x="66" y="36" width="18" height="4" rx="2" fill="#0e1d38"/><rect x="66" y="45" width="22" height="4" rx="2" fill="#0e1d38"/><rect x="40" y="110" width="40" height="6" rx="3" fill="#0e1d38" opacity=".2"/></svg>
+        </div>
+        <h3>警告看板を設置</h3>
+        <p>「巡回・記録している駐車場」であることを明示し、無断駐車そのものを抑止します。</p>
+        <ul><li>現地調査のうえ最適な位置へ設置</li><li>LINE通報用QRつき</li></ul>
+      </div>
+      <div class="step rv">
+        <span class="step-no">STEP 02</span>
+        <div class="step-illust">
+          <svg viewBox="0 0 120 120"><rect x="34" y="8" width="52" height="104" rx="10" fill="#0e1d38"/><rect x="39" y="18" width="42" height="84" rx="4" fill="#fff"/><rect x="44" y="26" width="28" height="12" rx="6" fill="#e9edf2"/><rect x="50" y="44" width="26" height="12" rx="6" fill="#8de055"/><rect x="44" y="62" width="32" height="22" rx="4" fill="#d6dde6"/><path d="M50 80l7-8 5 5 4-4 6 7z" fill="#8b94a3"/><circle cx="96" cy="26" r="14" fill="#06c755"/><path d="M90 26l4 4 8-8" stroke="#fff" stroke-width="3" fill="none"/></svg>
+        </div>
+        <h3>スマホでLINE通報</h3>
+        <p>無断駐車を見つけたら、LINEから専用フォームへ。写真と場所を送るだけで受付完了です。</p>
+        <ul><li>アプリ追加不要・24時間受付</li><li>位置情報をワンタップで入力</li></ul>
+      </div>
+      <div class="step rv">
+        <span class="step-no">STEP 03</span>
+        <div class="step-illust">
+          <svg viewBox="0 0 120 120"><rect x="14" y="56" width="92" height="34" rx="10" fill="#16294d"/><path d="M28 56l10-20h44l10 20z" fill="#2c4778"/><rect x="42" y="40" width="36" height="14" rx="2" fill="#a9c3e8"/><circle cx="34" cy="92" r="10" fill="#0e1d38"/><circle cx="86" cy="92" r="10" fill="#0e1d38"/><rect x="50" y="62" width="22" height="16" rx="2" fill="#ffc629"/><rect x="54" y="67" width="14" height="2" fill="#0e1d38"/><rect x="54" y="71" width="10" height="2" fill="#0e1d38"/><circle cx="98" cy="22" r="14" fill="#fff" stroke="#0e1d38" stroke-width="3"/><circle cx="98" cy="22" r="5" fill="#0e1d38"/></svg>
+        </div>
+        <h3>駆けつけ・証拠化</h3>
+        <p>スタッフが現地へ。車両を日時・位置つきで撮影し、警告書を貼付して記録を残します。</p>
+        <ul><li>担当者の現地対応はゼロ</li><li>再発車両は履歴で管理</li></ul>
+      </div>
+    </div>
+    <div class="steps-report rv">
+      <span class="tag">対応後</span>
+      <p>撮影写真・対応内容・時刻をまとめた<strong>証拠レポート</strong>をLINEでお届け。契約者さまへの報告や、今後の交渉資料としてそのまま使えます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. plans ===== -->
+<section class="plans" id="plans">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">PRICE</span>
+      <h2>駐車場の状況に合わせて<br><mark>選べる料金プラン</mark></h2>
+      <p>初期費用・看板設置費は各プランに含まれます。</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan rv">
+        <span class="plan-name">PLAN A</span>
+        <h3>ライトプラン</h3>
+        <div class="price"><small>月額</small><strong>10,000</strong><span class="unit">円</span></div>
+        <p class="for">まずは抑止から始めたい、小規模な駐車場に。</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>警告看板 1枚設置</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>LINE通報 24時間受付</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>駆けつけ対応 月1回</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>証拠写真レポート</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 12h12"/></svg>再発車両の履歴管理</li>
+        </ul>
+        <a href="#report" class="btn btn-navy">このプランで相談する</a>
+      </div>
+      <div class="plan pop rv">
+        <span class="ribbon">いちばん選ばれています</span>
+        <span class="plan-name">PLAN B</span>
+        <h3>スタンダードプラン</h3>
+        <div class="price"><small>月額</small><strong>20,000</strong><span class="unit">円</span></div>
+        <p class="for">無断駐車が繰り返される駐車場・複数区画に。</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>警告看板 2枚設置</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>LINE通報 24時間受付</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>駆けつけ対応 月3回</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>証拠写真レポート＋月次まとめ</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>再発車両の履歴管理</li>
+        </ul>
+        <a href="#report" class="btn btn-line">このプランで相談する</a>
+      </div>
+      <div class="plan rv">
+        <span class="plan-name">SPOT</span>
+        <h3>スポット対応</h3>
+        <div class="price"><small>1回</small><strong>20,000</strong><span class="unit">円</span></div>
+        <p class="for">今すぐこの1台をなんとかしたい、という時に。</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>月額契約なしでご利用可</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>駆けつけ対応 1回</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>警告書の貼付</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>証拠写真レポート</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 12h12"/></svg>警告看板の設置</li>
+        </ul>
+        <a href="#report" class="btn btn-navy">スポットで依頼する</a>
+      </div>
+    </div>
+    <p class="plan-note">※表示価格は税別です。対応エリア・回数超過時の料金はお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- ===== 4. legal ===== -->
+<section class="legal" id="legal">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">COMPLIANCE</span>
+      <h2>「やりすぎない」から安心。<br>法務・リスク管理の仕組み</h2>
+      <p>無断駐車への対応は、やり方を誤るとオーナーさま側が責任を問われることもあります。<br>ミハリバンは、法的リスクを避けた手順だけで対応します。</p>
+    </div>
+    <div class="legal-grid">
+      <div class="legal-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"/></svg></div>
+        <div><h3>自力救済をしない運用</h3><p>車両の移動・タイヤロック・損傷など、法的に問題となりうる行為は一切行いません。注意喚起と記録に徹します。</p></div>
+      </div>
+      <div class="legal-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l2-3h4l2 3"/></svg></div>
+        <div><h3>日時・位置つきの証拠化</h3><p>撮影データは改ざんしにくい形式で保管。いつ・どこで・どの車両かを客観的に示せる記録を残します。</p></div>
+      </div>
+      <div class="legal-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg></div>
+        <div><h3>文面・貼付方法の標準化</h3><p>警告書は威圧的・脅迫的にならない文面を使用。車体を傷めない素材で貼付し、二次トラブルを防ぎます。</p></div>
+      </div>
+      <div class="legal-card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><path d="M10.5 10.5l3 3M16 5h3v3M19 5l-4 4"/></svg></div>
+        <div><h3>専門家へのスムーズな引き継ぎ</h3><p>長期放置や悪質なケースは、集めた記録をもとに弁護士・警察への相談へつなげられるよう整理してお渡しします。</p></div>
+      </div>
+    </div>
+    <div class="dont rv">
+      <h3><svg width="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>私たちがしないこと</h3>
+      <ul><li>レッカー移動</li><li>タイヤロック</li><li>車両への落書き・損傷</li><li>高額な「罰金」の請求</li><li>運転者への威圧的な対応</li></ul>
+    </div>
+    <p class="legal-disc">※本セクションは一般的な対応方針の説明であり、個別の法的助言ではありません。</p>
+  </div>
+</section>
+
+<!-- ===== 5. report / LINE form ===== -->
+<section class="report" id="report">
+  <div class="wrap">
+    <div>
+      <div class="sec-head rv">
+        <span class="sec-label">LINE REPORT</span>
+        <h2>見つけたら、<mark>LINEで送るだけ。</mark></h2>
+        <p>専用の通報フォームはLINEのメニューからすぐ開けます。右の画面で実際の操作感をお試しください。</p>
+      </div>
+      <ol class="flow">
+        <li class="rv"><span class="n">1</span><div><b>LINE公式アカウントを友だち追加</b><span>看板のQRコード、または下のボタンから。あいさつメッセージで使い方をご案内します。</span></div></li>
+        <li class="rv"><span class="n">2</span><div><b>リッチメニューの「通報する」をタップ</b><span>通報フォームが開きます。ログインやアプリのインストールは不要です。</span></div></li>
+        <li class="rv"><span class="n">3</span><div><b>写真・駐車場名・状況を送信</b><span>受付番号が届き、スタッフの到着予定をLINEでお知らせします。</span></div></li>
+      </ol>
+      <div class="report-actions rv">
+        <a href="#report" class="btn btn-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg>LINEで友だち追加</a>
+        <a href="tel:0120000000" class="btn btn-yellow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.6a1 1 0 01-.25 1z"/></svg>電話で通報する</a>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="phone">
+        <div class="screen">
+          <div class="ph-top">
+            <span class="av"><svg width="16" viewBox="0 0 24 24" fill="none" stroke="#0e1d38" stroke-width="2.8"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/></svg></span>
+            <div>ミハリバン 通報窓口<small>公式アカウント</small></div>
+          </div>
+          <div class="chat">
+            <div class="bubble">ご登録ありがとうございます。無断駐車を見つけたら、下のフォームから送ってください🚗</div>
+          </div>
+
+          <form class="form-sheet" id="reportForm" novalidate>
+            <div class="sheet-bar"><b>無断駐車の通報</b><span>約30秒で完了</span></div>
+            <div class="sheet-body">
+              <div class="fld">
+                <span class="lbl">現地の写真 <span class="req">必須</span></span>
+                <label class="upload">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l2-3h4l2 3"/></svg>
+                  タップして撮影・写真を選択（最大5枚）
+                  <input type="file" id="photos" accept="image/*" multiple>
+                </label>
+                <div class="thumbs" id="thumbs"></div>
+              </div>
+              <div class="fld">
+                <label for="lot">駐車場名 <span class="req">必須</span></label>
+                <input type="text" id="lot" placeholder="例）グリーンハイツ第2駐車場 No.7">
+              </div>
+              <div class="fld">
+                <label for="addr">住所</label>
+                <div class="geo"><input type="text" id="addr" placeholder="例）〇〇市〇〇町1-2-3"><button type="button" id="geoBtn">現在地</button></div>
+              </div>
+              <div class="fld">
+                <span class="lbl">トラブル状況 <span class="req">必須</span></span>
+                <div class="chips" role="radiogroup">
+                  <label><input type="radio" name="kind" value="無断駐車"><span>無断駐車</span></label>
+                  <label><input type="radio" name="kind" value="長期放置"><span>長期放置</span></label>
+                  <label><input type="radio" name="kind" value="出入口をふさいでいる"><span>出入口をふさいでいる</span></label>
+                  <label><input type="radio" name="kind" value="その他"><span>その他</span></label>
+                </div>
+              </div>
+              <div class="fld">
+                <label for="memo">車両の特徴・補足</label>
+                <textarea id="memo" placeholder="例）白のミニバン。昨日の夜からずっと停まっています。"></textarea>
+              </div>
+              <button type="submit" class="submit" id="submitBtn" disabled>この内容で通報する</button>
+            </div>
+          </form>
+
+          <div class="done" id="done" role="status" aria-live="polite">
+            <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></div>
+            <h4>通報を受け付けました</h4>
+            <span class="rid num" id="rid">No.0000</span>
+            <p>担当スタッフが内容を確認し、<br>到着予定時刻をLINEでお知らせします。</p>
+            <button type="button" class="btn btn-navy" id="resetBtn" style="padding:10px 20px;font-size:13px;margin-top:6px">もう一度試す</button>
+          </div>
+        </div>
+      </div>
+      <p class="demo-tag" style="text-align:center;display:block">※デモ画面です。入力内容は送信・保存されません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== faq ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">FAQ</span>
+      <h2>よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <details class="rv"><summary>対応エリアはどこまでですか？</summary><p>現在は首都圏を中心に対応しています。エリア外の駐車場についても、まずはLINEかお電話でご相談ください。</p></details>
+      <details class="rv"><summary>通報してから、どのくらいで来てもらえますか？</summary><p>受付後、到着予定時刻をLINEでお知らせします。エリアや時間帯によりますが、多くの場合は当日中に駆けつけます。</p></details>
+      <details class="rv"><summary>無断駐車の車を移動したり、罰金を請求したりできますか？</summary><p>当サービスでは、車両の移動や高額な請求など法的リスクのある対応は行いません。注意喚起と証拠化に徹し、必要に応じて専門家への相談につなげます。</p></details>
+      <details class="rv"><summary>契約期間の縛りはありますか？</summary><p>月額プランは1か月単位でご利用いただけます。スポット対応は契約なしで1回からご依頼可能です。</p></details>
+      <details class="rv"><summary>複数の駐車場をまとめて管理できますか？</summary><p>はい。管理会社さま向けに、複数物件の通報履歴やレポートをまとめて確認できる運用もご用意しています。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== cta ===== -->
+<section class="cta">
+  <div class="wrap rv">
+    <h2>無断駐車の対応、<br>今日から任せてみませんか？</h2>
+    <p>ご相談・お見積りは無料です。まずはLINEで状況をお聞かせください。</p>
+    <div class="cta-btns">
+      <a href="#report" class="btn btn-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6c1.4-1.6 2-3.2 2-4.8C22 6.6 17.5 3 12 3z"/></svg>LINEで無料相談</a>
+      <a href="tel:0120000000" class="btn btn-navy"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.6a1 1 0 01-.25 1z"/></svg>電話で相談する</a>
+    </div>
+    <div class="cta-tel">お電話受付 9:00〜20:00（年中無休）<b>0120-000-000</b></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e1d38" stroke-width="2.6"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/></svg></span>ミハリバン</div>
+    <span>違法駐車の注意・証拠化代行サービス</span>
+    <p class="demo-note">本ページは制作実績（ポートフォリオ）用のデモサイトです。サービス名・料金・電話番号・事例などはすべて架空のもので、実在の企業・サービスとは関係ありません。</p>
+  </div>
+</footer>
+
+<div class="sp-bar">
+  <a href="tel:0120000000" class="btn btn-yellow">📞 電話する</a>
+  <a href="#report" class="btn btn-line">LINEで通報</a>
+</div>
+
+<script>
+// scroll reveal
+(() => {
+  const els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(e => io.observe(e));
+})();
+
+// demo report form
+(() => {
+  const form = document.getElementById('reportForm');
+  const photos = document.getElementById('photos');
+  const thumbs = document.getElementById('thumbs');
+  const lot = document.getElementById('lot');
+  const btn = document.getElementById('submitBtn');
+  const done = document.getElementById('done');
+  let photoCount = 0;
+
+  const check = () => {
+    const kind = form.querySelector('input[name=kind]:checked');
+    btn.disabled = !(photoCount > 0 && lot.value.trim() && kind);
+  };
+
+  photos.addEventListener('change', () => {
+    thumbs.innerHTML = '';
+    const files = [...photos.files].slice(0, 5);
+    photoCount = files.length;
+    files.forEach(f => {
+      const img = document.createElement('img');
+      img.alt = '選択した写真';
+      img.src = URL.createObjectURL(f);
+      thumbs.appendChild(img);
+    });
+    check();
+  });
+  form.addEventListener('input', check);
+  form.addEventListener('change', check);
+
+  document.getElementById('geoBtn').addEventListener('click', () => {
+    document.getElementById('addr').value = '東京都〇〇区〇〇町1-2-3（現在地・デモ）';
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (btn.disabled) return;
+    document.getElementById('rid').textContent = 'No.' + String(Math.floor(1000 + Math.random() * 9000));
+    done.classList.add('show');
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    form.reset(); thumbs.innerHTML = ''; photoCount = 0; check();
+    done.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>
